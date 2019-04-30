@@ -3,12 +3,16 @@
   Dim xmlXForm
   Dim strErr
   Dim strResult
+  Dim xmlPath
+  Dim xslPath
    
   Dim fso , file
   Dim strPath
   Const ForReading = 1
   Const ForWriting = 2
   Const ForAppending = 8
+  xmlPath="c:\gezxml.xml"
+  xslPath="c:\testme.xsl"
  
   Set xmlSource = CreateObject("MSXML.DOMDocument")
   Set xmlXForm = CreateObject("MSXML.DOMDocument")
@@ -18,14 +22,14 @@
   xmlSource.async = False
   xmlXForm.async = False
  
-  xmlSource.Load "c:\gezxml.xml"  ' This loads the text that I want to transform
+  xmlSource.Load  xmlPath ' This loads the text that I want to transform
   If Err.Number <> 0 Then
       strErr = Err.Description & vbCrLf
       strErr = strErr & xmlSource.parseError.reason & " line: " & xmlSource.parseError.Line & " col: " & xmlSource.parseError.linepos & " text: " & xmlSource.parseError.srcText
       MsgBox strErr, vbCritical, "Error loading the XML"
   End If
  
-  xmlXForm.Load "c:\testme.xsl" ' This loads the XSLT transform
+  xmlXForm.Load xslPath ' This loads the XSLT transform
   If Err.Number <> 0 Then
       strErr = Err.Description & vbCrLf
       strErr = strErr & xmlSource.parseError.reason & " line: " & xmlSource.parseError.Line & " col: " & xmlSource.parseError.linepos & " text: " & xmlSource.parseError.srcText
