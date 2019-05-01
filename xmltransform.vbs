@@ -5,6 +5,7 @@
   Dim strResult
   Dim xmlPath
   Dim xslPath
+  Dim strTestFile
    
   Dim fso , file
   Dim strPath
@@ -13,6 +14,7 @@
   Const ForAppending = 8
   xmlPath="c:\gezxml.xml"
   xslPath="c:\testme.xsl"
+  strTestFile="c:\testme.txt"
  
   Set xmlSource = CreateObject("MSXML.DOMDocument")
   Set xmlXForm = CreateObject("MSXML.DOMDocument")
@@ -44,7 +46,7 @@
   End If
  
   Set fso = CreateObject("Scripting.FileSystemObject")
-  strPath = "c:\testme.txt"
+  strPath = strTestFile
   ' open the file
   Set file = fso.opentextfile(strPath, ForWriting, True)
   ' write the info to the file
